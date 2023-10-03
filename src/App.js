@@ -62,7 +62,13 @@ class App extends Component {
     const {activeTab} = this.state
     this.setState(prevState => {
       const {slidesList} = prevState
-      const newList = slidesList.splice(activeTab + 1, 0, item)
+      //   console.log(activeTab, slidesList)
+      const newList = [
+        ...slidesList.slice(0, activeTab + 1),
+        item,
+        ...slidesList.slice(activeTab + 1),
+      ]
+      //   console.log(item, newList)
       return {slidesList: [...newList]}
     })
   }

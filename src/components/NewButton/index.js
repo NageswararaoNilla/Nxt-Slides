@@ -1,4 +1,4 @@
-import {v4 as uuidV4} from 'uuid'
+import {v4 as uuidv4} from 'uuid'
 
 import SlideContext from '../../context'
 
@@ -10,7 +10,7 @@ const NewButton = () => (
       const {addNewSlide, activeTab, changeActiveTab} = value
 
       const onClickAddButton = () => {
-        const id = uuidV4()
+        const id = uuidv4()
         const item = {
           id,
           heading: 'Heading',
