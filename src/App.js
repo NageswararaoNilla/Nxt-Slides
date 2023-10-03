@@ -1,6 +1,10 @@
 import {Component} from 'react'
 
 import Header from './components/Header'
+import NewButton from './components/NewButton'
+import Slides from './components/Slides'
+
+import SlideContext from './context'
 
 import './App.css'
 
@@ -50,12 +54,68 @@ class App extends Component {
     activeTab: 0,
   }
 
+  changeActiveTab = index => {
+    this.setState({activeTab: index})
+  }
+
+  addNewSlide = item => {
+    const {activeTab} = this.state
+    this.setState(prevState => {
+      const {slidesList} = prevState
+      const newList = slidesList.splice(activeTab + 1, 0, item)
+      return {slidesList: [...newList]}
+    })
+  }
+
+  changeHeading = value => {
+    const {activeTab} = this.state
+    this.setState(prevState => {
+      const {slidesList} = prevState
+      const newList = slidesList.map((eachItem, index) => {
+        if (activeTab === index) {
+          return {...eachItem, heading: value}
+        }
+        return eachItem
+      })
+      return {slidesList: newList}
+    })
+  }
+
+  changeDescription = value => {
+    const {activeTab} = this.state
+    this.setState(prevState => {
+      const {slidesList} = prevState
+      const newList = slidesList.map((eachItem, index) => {
+        if (activeTab === index) {
+          return {...eachItem, description: value}
+        }
+        return eachItem
+      })
+      return {slidesList: newList}
+    })
+  }
+
   render() {
     const {slidesList, activeTab} = this.state
-    console.log(activeTab, slidesList)
+    // console.log(activeTab, slidesList)
     return (
       <div>
         <Header />
+        <SlideContext.Provider
+          value={{
+            slidesList,
+            activeTab,
+            changeActiveTab: this.changeActiveTab,
+            addNewSlide: this.addNewSlide,
+            changeHeading: this.changeHeading,
+            changeDescription: this.changeDescription,
+          }}
+        >
+          <>
+            <NewButton />
+            <Slides />
+          </>
+        </SlideContext.Provider>
       </div>
     )
   }
