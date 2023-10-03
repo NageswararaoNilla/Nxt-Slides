@@ -1,0 +1,22 @@
+.nav-container {
+  padding: 5px 15px;
+  background-color: #dbeafe;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  width: 70px;
+}
+
+.heading {
+  color: #0f172a;
+  font-size: 32px;
+  font-family: 'Bree Serif';
+  margin-left: 15px;
+  font-weight: 500;
+}

@@ -1,3 +1,7 @@
+import {Component} from 'react'
+
+import Header from './components/Header'
+
 import './App.css'
 
 // This is the list used in the application. You can move them to any component needed.
@@ -40,6 +44,21 @@ const initialSlidesList = [
 ]
 
 // Replace your code here
-const App = () => <div>Hello World</div>
+class App extends Component {
+  state = {
+    slidesList: initialSlidesList,
+    activeTab: 0,
+  }
+
+  render() {
+    const {slidesList, activeTab} = this.state
+    console.log(activeTab, slidesList)
+    return (
+      <div>
+        <Header />
+      </div>
+    )
+  }
+}
 
 export default App
